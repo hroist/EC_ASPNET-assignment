@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    
+}
+
+<section class="admin footer-down below-header">
+
+    <div class="container">
+        <div class="title text-center">bmerketo Backoffice</div>
+        <div class="mt-5 d-flex flex-column flex-md-row justify-content-center gap-3">
+            <a asp-controller="admin" asp-action="users" class="btn-theme">Manage users</a>
+            <a asp-controller="admin" asp-action="products" class="btn-theme">Manage products</a>
+            <a asp-controller="admin" asp-action="messages" class="btn-theme">Manage messages</a>
+        </div>
+    </div>
+
+</section>

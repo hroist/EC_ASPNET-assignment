@@ -1,0 +1,26 @@
+.best-collection {
+    .section-title {
+        font-family: $font-poppins;
+        font-size: 48px;
+        font-weight: $font-weight-semibold;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .categories {
+        text-align: center;
+        margin: 16px;
+
+    }
+
+    .collection-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 8px;
+
+        @include xl {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+}

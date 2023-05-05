@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Products";
+
+    var products = await productService.GetAllAsync();
+}
+
+
+    <section class="all-products below-header">
+        <div class="container">
+            <h1 class="mt-5 text-center">All products</h1>
+            <div class="row justify-content-center">
+                @foreach (var product in products)
+                {
+                    <partial name="/Views/Partials/_ProductCard.cshtml" model="product" />
+                }
+            </div>
+        </div>
+    </section>
+
+
+

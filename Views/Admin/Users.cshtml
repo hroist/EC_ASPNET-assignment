@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Manage users";
+
+    var users = await userService.GetAllAsync();
+
+    
+
+}
+
+<section class="admin below-header">
+
+    <div class="container">
+        <div class="title">Manage users</div>
+        <a href="/account/register">Add user</a>
+        <div class="mt-3">
+            @if (users != null)
+            {
+                <div class="d-flex gap-2 mb-2">
+                    <div class="list-item"><strong>First name</strong> </div>
+                    <div class="list-item"><strong>Last name</strong></div>
+                    <div class="list-item"><strong>Email</strong></div>
+                    <div class="list-item"><strong>Role</strong></div>
+                </div>
+                foreach (var user in users)
+                {
+                    <div class="mb-2 me-2 d-flex gap-2">
+                        <div class="list-item">@user.FirstName </div>
+                        <div class="list-item">@user.LastName </div>
+                        <div class="list-item">@user.Email </div>
+                        @{
+                            var roles = await userManager.GetRolesAsync(user);
+                            foreach (var role in roles)
+                            {
+                                <div class="list-item">@role </div>
+                            }
+                        }
+                        <a asp-controller="account" asp-action="profile" asp-route-id="@user.Id" class="btn-theme list-item">Edit</a>
+                    </div>
+                }
+            }
+            else
+            {
+                <div>No users could be found</div>
+            }
+        </div>
+    </div>
+</section>

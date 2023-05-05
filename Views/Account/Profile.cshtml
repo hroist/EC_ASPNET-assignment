@@ -1,0 +1,100 @@
+﻿@{
+    @model MyAccountViewModel
+    ViewData["Title"] = "Edit profile";
+    
+    AppUser _user;
+    ProfileEntity _profile;
+
+    var userId = ViewContext.RouteData.Values["id"]?.ToString();
+
+    if (userId == null)
+    {
+        _user = await userService.GetAsync(User.Identity?.Name);
+        _profile = await profileService.GetAsync(_user.Id);
+    }
+    else
+    {
+        _user = await userService.GetByIdAsync(userId);
+        _profile = await profileService.GetAsync(userId);
+    }
+}
+
+<section class="admin below-header container">
+    <h1>Hello @User.FindFirst("DisplayName")?.Value</h1>
+    <div class="profile-form">
+        <div class="title">Profile information</div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form method="post" enctype="multipart/form-data" asp-action="Profile" novalidate>
+            <div class="firstName form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" id="firstName" value="@_user.FirstName">
+                <span class="error" asp-validation-for="FirstName"></span>
+            </div>
+            <div class="lastName form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" id="lastName" value="@_user.LastName">
+                <span class="error" asp-validation-for="LastName"></span>
+            </div>
+            <div class="streetName form-group">
+                <label asp-for="StreetName"></label>
+                <input asp-for="StreetName" id="streetName" value="@_profile?.StreetName">
+                <span class="error" asp-validation-for="StreetName"></span>
+            </div>
+            <div class="postalCode form-group">
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" id="postalCode" value="@_profile?.PostalCode">
+                <span class="error" asp-validation-for="PostalCode"></span>
+            </div>
+            <div class="city form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" id="city" value="@_profile?.City">
+                <span class="error" asp-validation-for="City"></span>
+            </div>
+            <div class="mobile form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" id="mobile" value="@_user.PhoneNumber">
+            </div>
+            <div class="company form-group">
+                <label asp-for="CompanyName"></label>
+                <input asp-for="CompanyName" id="company" value="@_profile?.CompanyName">
+            </div>
+            <div class="email form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" id="email" value="@_user.Email" readonly>
+            </div>
+            <div class="profilePicture form-group">
+                <label asp-for="ImageFile"></label>
+                <input asp-for="ImageFile" id="profilePicture">
+            </div>
+            @{
+                if (await userManager.IsInRoleAsync(await userService.GetAsync(User.Identity?.Name), "SystemAdministrator"))
+                {
+                    <div class="role form-group">
+                        <label asp-for="RoleName"></label>
+                        <select asp-for="RoleName" >
+                            @{
+
+                                var roles = roleManager.Roles;
+                                var userRole = await userManager.GetRolesAsync(_user);
+                                var selected = false;
+
+                                foreach (var role in roles)
+                                {
+
+                                    @if (userRole.Contains(role.Name))
+                                        selected = true;
+                                    else
+                                        selected = false;
+                                    <option asp-for="RoleName" value="@role" selected="@selected">@role</option>
+                               }
+                            }
+                        </select>
+                    </div>
+                }
+            }
+
+            <button type="submit" class="btn-theme">Update profile</button>
+        </form>
+    </div>
+</section>

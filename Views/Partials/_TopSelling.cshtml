@@ -1,0 +1,35 @@
+﻿@{
+    int amount = 6;
+    var allProducts = await productService.GetByTagAsync("popular");
+    var products = allProducts.Take(amount);
+}
+
+<section class="top-selling">
+    <div class="container-fluid">
+        <div class="section-title">
+            Top selling products this week
+        </div>
+        <div class="card-grid">
+            @foreach (var product in products)
+            {
+                    <partial name="/Views/Partials/_ProductCard.cshtml" model="product" />
+
+            }
+        </div>
+        <div class="slider-arrows">
+            <div class="arrow">
+                <
+            </div>
+            <div class="arrow">
+                >
+            </div>
+        </div>
+        <div class="large-card-grid">
+            <div class="container">
+                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
+                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
+                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
+            </div>
+        </div>
+    </div>
+</section>

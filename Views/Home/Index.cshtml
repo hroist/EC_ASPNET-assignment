@@ -1,0 +1,13 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Home";
+    var featuredCollection = collectionService.GetCollection("featured", "Featured Collection");
+    var newCollection = collectionService.GetCollection("new", "New Arrivals");
+}
+
+<partial name="/Views/Partials/_Showcase.cshtml" />
+<partial name="/Views/Partials/_Collection.cshtml" model="featuredCollection" />
+<partial name="/Views/Partials/_SaleBanner.cshtml" />
+<partial name="/Views/Partials/_Collection.cshtml" model="newCollection" />
+<partial name="/Views/Partials/_TopSelling.cshtml" />
+<partial name="/Views/Partials/Forms/_NewsletterForm.cshtml" />

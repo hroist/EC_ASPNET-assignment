@@ -1,0 +1,73 @@
+﻿.profile-form {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 50px 0;
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "firstName" "lastName" "streetName" "postalCode" "city" "mobile" "company" "email" "profilePicture" "role" "button";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "firstName lastName" "streetName streetName" "postalCode city" "mobile company" "email email" "profilePicture profilePicture" "role role" "button button";
+        }
+
+        .firstName {
+            grid-area: firstName;
+        }
+
+        .lastName {
+            grid-area: lastName;
+        }
+
+        .streetName {
+            grid-area: streetName;
+        }
+
+        .postalCode {
+            grid-area: postalCode;
+        }
+
+        .city {
+            grid-area: city;
+        }
+
+        .mobile {
+            grid-area: mobile;
+        }
+
+        .company {
+            grid-area: company;
+        }
+
+        .email {
+            grid-area: email;
+        }
+
+        .profilePicture {
+            grid-area: profilePicture;
+        }
+
+        .role {
+            grid-area: role;
+        }
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}

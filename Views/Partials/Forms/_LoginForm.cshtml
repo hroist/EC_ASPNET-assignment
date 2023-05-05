@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+
+<section class="login-form">
+    <div class="container">
+        <div class="title">Login to your account</div>
+
+        <div class="mb-4">
+            <a href="/account/register">Don't have an account yet? Register here.</a>
+        </div>
+
+        <form method="post" novalidate>
+            <div class="email form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" id="email">
+                <span class="error" asp-validation-for="Email"></span>
+            </div>
+            <div class="password form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" id="password">
+                <span class="error" asp-validation-for="Password"></span>
+            </div>
+
+            <div class="form-checkbox-group">
+                <label asp-for="RememberMe" class="custom-checkbox">
+                    <input asp-for="RememberMe">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <button type="submit" class="btn-theme">Login</button>
+        </form>
+    </div>
+</section>

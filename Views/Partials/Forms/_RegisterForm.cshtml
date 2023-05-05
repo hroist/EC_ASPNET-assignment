@@ -1,0 +1,73 @@
+﻿@model RegisterViewModel
+
+<section class="register-form">
+    <div class="container">
+        <div class="title">Register an account</div>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form method="post" enctype="multipart/form-data" novalidate>
+            <div class="firstName form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" id="firstName">
+                <span class="error" asp-validation-for="FirstName"></span>
+            </div>
+            <div class="lastName form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" id="lastName">
+                <span class="error" asp-validation-for="LastName"></span>
+            </div>
+            <div class="streetName form-group">
+                <label asp-for="StreetName"></label>
+                <input asp-for="StreetName" id="streetName">
+                <span class="error" asp-validation-for="StreetName"></span>
+            </div>
+            <div class="postalCode form-group">
+                <label asp-for="PostalCode"></label>
+                <input asp-for="PostalCode" id="postalCode">
+                <span class="error" asp-validation-for="PostalCode"></span>
+            </div>
+            <div class="city form-group">
+                <label asp-for="City"></label>
+                <input asp-for="City" id="city">
+                <span class="error" asp-validation-for="City"></span>
+            </div>
+            <div class="mobile form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" id="mobile">
+            </div>
+            <div class="company form-group">
+                <label asp-for="CompanyName"></label>
+                <input asp-for="CompanyName" id="company">
+            </div>
+            <div class="email form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" id="email">
+                <span class="error" asp-validation-for="Email"></span>
+            </div>
+            <div class="password form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" id="password">
+                <span class="error" asp-validation-for="Password"></span>
+            </div>
+            <div class="confirmPassword form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" id="confirmPassword">
+                <span class="error" asp-validation-for="ConfirmPassword"></span>
+            </div>
+            <div class="profilePicture form-group">
+                <label asp-for="ImageFile"></label>
+                <input asp-for="ImageFile" id="profilePicture">
+            </div>
+
+            <div class="terms form-checkbox-group">
+                <label asp-for="Terms" class="custom-checkbox">
+                    <input asp-for="Terms">
+                    <span class="checkmark"></span>
+                </label>
+                <span class="error" asp-validation-for="Terms"></span>
+            </div>
+            <button type="submit" class="btn-theme">Submit</button>
+        </form>
+    </div>
+</section>

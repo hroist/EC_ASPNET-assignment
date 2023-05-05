@@ -1,0 +1,19 @@
+.admin {
+
+
+    .title {
+        font-family: $font-poppins;
+        font-weight: $font-weight-semibold;
+        font-size: 30px;
+        margin: 40px 0;
+    }
+
+    .list-item {
+        width: 19%;
+        overflow-wrap: anywhere;
+
+        @include lg {
+            width: 200px;
+        }
+    }
+}

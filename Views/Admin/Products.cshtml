@@ -1,0 +1,45 @@
+﻿@model ProductAddViewModel
+@{
+    ViewData["Title"] = "Manage products";
+
+    var products = await productService.GetAllAsync();
+}
+
+<section class="products-list">
+    <div class="container">
+        <div class="title">All products</div>
+        <a asp-controller="admin" asp-action="addproducts" class="mb-5 fw-bold">Add new product</a>
+
+            @if (products != null)
+            {
+                <div class="row mt-4">
+                    @foreach (var product in products)
+                    {
+@*                        var productTags = await tagService.GetProductTagsAsync(product);
+*@                        <div class="grid-item">   
+                            <div class="me-2 image-container border">
+                                <img src="@product.ImageUrl" alt="@product.Name">
+                            </div>
+                            <div class="mb-2 me-2">
+                                <div>@product.Name</div>
+                                <div class="fst-italic">@product.Category</div>
+                                <div>$@product.Price</div>
+                                <div>Tags:  @foreach (var tag in product.Tags)
+                                            {
+                                                <p class="d-inline border mx-1 px-1 text-nowrap"> @tag </p>
+                                            }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            } 
+            else
+            {
+                <div class="mt-5">Cannot find any products... :(</div>
+            }
+
+
+    </div>
+</section>
+

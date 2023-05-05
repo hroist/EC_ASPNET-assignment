@@ -1,0 +1,66 @@
+.product-add-form {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 150px 0;
+    }
+
+    .container {
+        border: 0px solid $color-dark;
+        padding: 30px;
+
+        @include md {
+            border: 1px solid $color-dark;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "name" "description" "category" "price" "imageUrl" "tags" "button";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "name name" "description description" "category imageUrl" "price price" "tags tags" "button button";
+        }
+
+        .name {
+            grid-area: name;
+        }
+
+        .description {
+            grid-area: description;
+        }
+
+        .category {
+            grid-area: category;
+        }
+
+        .price {
+            grid-area: price;
+        }
+
+        .imageUrl {
+            grid-area: imageUrl;
+        }
+
+        .tags {
+            grid-area: tags;
+        }
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}

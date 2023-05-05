@@ -1,0 +1,84 @@
+﻿@using merketo.Contexts;
+@{
+    @model MyAccountViewModel
+    ViewData["Title"] = "My account";
+    
+    AppUser _user;
+    ProfileEntity _profile;
+
+    var userId = ViewContext.RouteData.Values["id"]?.ToString();
+
+    if(userId == null)
+    {
+        _user = await userService.GetAsync(User.Identity?.Name);
+        _profile = await profileService.GetAsync(_user.Id);
+    }
+    else
+    {
+        _user = await userService.GetByIdAsync(userId);
+        _profile = await profileService.GetAsync(userId);
+    }
+
+
+}
+<div class="below-header">
+    
+
+    @{
+        if (await userManager.IsInRoleAsync(await userService.GetAsync(User.Identity?.Name), "SystemAdministrator"))
+        {
+            <section class="below-header">
+                <div class="container d-flex justify-content-end">
+                    <a asp-controller="admin" asp-action="index" class="btn-theme">Go to admin page</a>
+                </div>
+            </section>
+        } 
+
+        <section class="below-header container">
+            <h1>Hello @User.FindFirst("DisplayName")?.Value</h1>
+            <div class="profile-form">
+                <div class="title">Profile information</div>
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    <div class="firstName form-group">
+                        <label asp-for="FirstName"></label>
+                        <input placeholder="@_user.FirstName" id="firstName" disabled>
+                    </div>
+                    <div class="lastName form-group">
+                        <label asp-for="LastName"></label>
+                        <input placeholder="@_user.LastName" id="lastName" disabled>
+                    </div>
+                    <div class="streetName form-group">
+                        <label asp-for="StreetName"></label>
+                        <input placeholder="@_profile?.StreetName" id="streetName" disabled>
+                    </div>
+                    <div class="postalCode form-group">
+                        <label asp-for="PostalCode"></label>
+                        <input placeholder="@_profile?.PostalCode" id="postalCode" disabled>
+                    </div>
+                    <div class="city form-group">
+                        <label asp-for="City"></label>
+                        <input placeholder="@_profile?.City" id="city" disabled>
+                    </div>
+                    <div class="mobile form-group">
+                        <label asp-for="PhoneNumber"></label>
+                        <input placeholder="@_user.PhoneNumber" id="mobile" disabled>
+                    </div>
+                    <div class="company form-group">
+                        <label asp-for="CompanyName"></label>
+                        <input placeholder="@_profile?.CompanyName" id="company" disabled>
+                    </div>
+                    <div class="email form-group">
+                        <label asp-for="Email"></label>
+                        <input placeholder="@User.Identity?.Name" id="email" disabled>
+                    </div>
+                    <div class="profilePicture form-group">
+                        <label asp-for="ImageFile"></label>
+                        <input id="profilePicture">
+                    </div>
+
+                    <a asp-controller="account" asp-action="profile" class="btn-theme">Edit profile information</a>
+                </form>
+            </div>
+        </section>
+    }
+</div>

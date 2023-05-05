@@ -1,0 +1,77 @@
+.register-form {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 150px 0;
+    }
+
+    .container {
+        border: 0px solid $color-dark;
+        padding: 30px;
+
+        @include md {
+            border: 1px solid $color-dark;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas:    "firstName"
+                                "lastName"
+                                "streetName"
+                                "postalCode"
+                                "city"
+                                "mobile"
+                                "company"
+                                "email"
+                                "password"
+                                "confirmPassword"
+                                "profilePicture"
+                                "terms"
+                                "button";
+        
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:    "firstName lastName"
+                                    "streetName streetName"
+                                    "postalCode city"
+                                    "mobile company"
+                                    "email email"
+                                    "password password"
+                                    "confirmPassword confirmPassword"
+                                    "profilePicture profilePicture"
+                                    "terms terms"
+                                    "button button";
+        }
+
+        .firstName          { grid-area: firstName; }
+        .lastName           { grid-area: lastName; }
+        .streetName         { grid-area: streetName; }
+        .postalCode         { grid-area: postalCode; }
+        .city               { grid-area: city; }
+        .mobile             { grid-area: mobile; }
+        .company            { grid-area: company; }
+        .email              { grid-area: email;}
+        .password           { grid-area: password; }
+        .confirmPassword    { grid-area: confirmPassword; }
+        .profilePicture     { grid-area: profilePicture; }
+        .terms              { grid-area: terms;  margin: 10px 0; }
+        
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}

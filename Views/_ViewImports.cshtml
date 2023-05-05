@@ -1,0 +1,19 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity;
+@using WebApp.Models.Identity;
+@using WebApp.ViewModels;
+@using WebApp.Services;
+@using merketo.Services;
+@using WebApp.Models.Entities;
+@using merketo.ViewModels;
+@using WebApp.Models;
+@inject ShowcaseService showcaseService
+@inject CollectionService collectionService
+@inject ProductService productService
+@inject SignInManager<AppUser> signInManager
+@inject UserManager<AppUser> userManager
+@inject UserService userService
+@inject ProfileService profileService
+@inject RoleManager<IdentityRole> roleManager
+@inject TagService tagService
+

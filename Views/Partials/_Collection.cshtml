@@ -1,0 +1,23 @@
+﻿@model CollectionViewModel
+@{  
+    int amount = 8;
+    var allProducts = await productService.GetByTagAsync(@Model.Tag);
+    var products = allProducts.Take(amount);
+}
+
+<section class="best-collection">
+    <div class="container">
+        <div class="section-title">
+            @Model?.Title
+        </div>
+        <div class="categories">
+            All   ⁄   Dresses   ⁄   Tops   ⁄   Trousers   ⁄   Shirts   ⁄   Skirts   ⁄   Shoes   
+        </div>
+        <div class="collection-grid">
+            @foreach(var product in products)
+            {
+                <partial name="/Views/Partials/_ProductCard.cshtml" model="product" />
+            }
+        </div>
+    </div>
+</section>

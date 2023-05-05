@@ -1,0 +1,20 @@
+﻿@model ProductModel
+
+<div class="product-card">
+    <a class="card-link" asp-controller="products" asp-action="details" asp-route-id="@Model.ArticleNumber" >
+        <div class="card-image">
+            <img src="@Model.ImageUrl" alt="" />
+        </div>
+        <div class="title" >
+            @Model.Name
+        </div>
+        <div class="box-bottom">
+            <div class="price">
+                $@Model.Price
+            </div>
+            <div class="add-to-cart">
+                <i class="fa-regular fa-cart-plus"></i>
+            </div>
+        </div>
+    </a>
+</div>
