@@ -1,0 +1,42 @@
+﻿@model ProductAddViewModel
+@{
+    ViewData["Title"] = "Manage messages";
+
+    var messages = await messageService.GetAllAsync();
+}
+
+<section class="products-list">
+    <div class="container">
+        <a asp-action="index" class="mb-2">&larr; Go back </a>
+
+        <div class="d-sm-flex justify-content-between mt-3">
+            <div class="title">All messages</div>
+        </div>
+        <div class="d-flex gap-2 mt-4">
+            <div class="column-200 fw-bold">Name</div>
+            <div class="d-none d-md-block column-200 fw-bold">Email</div>
+            <div class="d-none d-md-block column-200 fw-bold">Phone number</div>
+            <div class="d-none d-md-block column-200 fw-bold">Company</div>
+            <div class="column-300 fw-bold">Message</div>
+        </div>
+        @if (messages != null)
+        {
+            <div class="mt-4">
+                @foreach (var message in messages)
+                {
+                    <div class="d-flex gap-2 line-border">
+                        <div class="column-200">@message.Name</div>
+                        <div class="d-none d-md-block column-200">@message.Email</div>
+                        <div class="d-none d-md-block column-200">@message.PhoneNumber</div>
+                        <div class="d-none d-md-block column-200">@message.CompanyName</div>
+                        <div class="column-300 text-wrap">@message.Message</div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="mt-5">Cannot find any messages... :(</div>
+        }
+    </div>
+</section>

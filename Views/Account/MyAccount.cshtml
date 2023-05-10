@@ -28,8 +28,8 @@
         if (await userManager.IsInRoleAsync(await userService.GetAsync(User.Identity?.Name), "SystemAdministrator"))
         {
             <section class="below-header">
-                <div class="container d-flex justify-content-end">
-                    <a asp-controller="admin" asp-action="index" class="btn-theme">Go to admin page</a>
+                <div class="container d-flex justify-content-center">
+                    <a asp-controller="admin" asp-action="index" class="btn-theme">Go to backoffice</a>
                 </div>
             </section>
         } 

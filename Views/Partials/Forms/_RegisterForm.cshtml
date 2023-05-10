@@ -6,7 +6,7 @@
 
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <form method="post" enctype="multipart/form-data" novalidate>
+        <form id="registerForm" method="post" enctype="multipart/form-data" novalidate>
             <div class="firstName form-group">
                 <label asp-for="FirstName"></label>
                 <input asp-for="FirstName" id="firstName">
@@ -61,13 +61,15 @@
             </div>
 
             <div class="terms form-checkbox-group">
-                <label asp-for="Terms" class="custom-checkbox">
-                    <input asp-for="Terms">
+                <label class="custom-checkbox">
+                    <label asp-for="Terms"></label>
+                    <input type="checkbox" asp-for="Terms" id="terms" name="Terms" value="false">
                     <span class="checkmark"></span>
                 </label>
-                <span class="error" asp-validation-for="Terms"></span>
+                <span class="ms-5 error field-validation-valid" asp-validation-for="Terms" id="termsError" data-valmsg-for="Terms" data-valmsg-replace="true"></span>
             </div>
-            <button type="submit" class="btn-theme">Submit</button>
+            <button type="submit" class="btn-theme" id="submitBtn">Submit</button>
         </form>
     </div>
 </section>
+

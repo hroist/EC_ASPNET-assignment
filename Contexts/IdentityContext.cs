@@ -36,8 +36,10 @@ namespace merketo.Contexts
                 Id = userId,
                 FirstName = "system",
                 LastName = "admin",
-                UserName = "administrator",
-                Email = "administrator",
+                UserName = "admin",
+                NormalizedUserName ="ADMIN",
+                Email = "admin",
+                NormalizedEmail = "ADMIN",
                 PasswordHash = passwordHasher.HashPassword(null!, "Password123")
 
             });
@@ -46,6 +48,15 @@ namespace merketo.Contexts
             {
                 RoleId = roleId,
                 UserId = userId
+            });
+
+            builder.Entity<ProfileEntity>().HasData(new ProfileEntity
+            {
+                UserId = userId,
+                StreetName = "admin",
+                PostalCode = "admin",
+                City = "admin",
+
             });
 
             

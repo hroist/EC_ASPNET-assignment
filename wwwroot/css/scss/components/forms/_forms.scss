@@ -1,7 +1,14 @@
+
+.title {
+    font-family: $font-poppins;
+    font-size: 18px;
+    font-weight: 500;
+}
+
 textarea,
 input,
 input:not([type="checkbox"]) {
-    border: 1px solid $color-grey;
+    border: 1px solid $color-theme-lightest;
     background-color: $color-theme-lightest;
     display: block;
     position: relative;
@@ -10,7 +17,7 @@ input:not([type="checkbox"]) {
     outline: 0;
 
     &:focus {
-        border: 1px solid $color-grey-light;
+        border: 1px solid $color-grey-warm;
     }
 }
 
@@ -28,13 +35,13 @@ input:not([type="checkbox"]) {
         position: absolute;
         opacity: 0;
         cursor: pointer;
-        border: 1px solid $color-grey;
+        border: 1px solid $color-grey-lightest;
 
         &:checked + .checkmark {
             height: 25px;
             width: 25px;
-            background-color: $color-theme-lightest;
-            border: 1px solid $color-grey-warm;
+            background-color: $color-grey-light;
+            border: 1px solid $color-grey-light;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,10 +50,9 @@ input:not([type="checkbox"]) {
                 content: '';
                 height: 15px;
                 width: 15px;
-                background-color: $color-grey-light;
+                background-color: $color-theme-red;
             }
         }
-
     }
 
     .checkmark {
@@ -55,8 +61,8 @@ input:not([type="checkbox"]) {
       left: 0;
       height: 25px;
       width: 25px;
-      background-color: $color-theme-light;
-      border: 1px solid $color-grey;
+      background-color: $color-grey-light;
+      border: 1px solid $color-grey-light;
       z-index: -1;
     }
 }
@@ -82,4 +88,9 @@ input:not([type="checkbox"]) {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.error {
+    font-size: 12px;
+    color: $color-theme-red;
 }

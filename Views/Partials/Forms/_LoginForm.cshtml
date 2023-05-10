@@ -7,7 +7,7 @@
         <div class="mb-4">
             <a href="/account/register">Don't have an account yet? Register here.</a>
         </div>
-
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form method="post" novalidate>
             <div class="email form-group">
                 <label asp-for="Email"></label>
@@ -20,9 +20,10 @@
                 <span class="error" asp-validation-for="Password"></span>
             </div>
 
-            <div class="form-checkbox-group">
-                <label asp-for="RememberMe" class="custom-checkbox">
-                    <input asp-for="RememberMe">
+            <div class="remember-me form-checkbox-group mb-3">
+                <label class="custom-checkbox">
+                    <label asp-for="RememberMe"></label>
+                    <input type="checkbox" asp-for="RememberMe">
                     <span class="checkmark"></span>
                 </label>
             </div>

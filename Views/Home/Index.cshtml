@@ -1,8 +1,8 @@
 ﻿@model HomeIndexViewModel
 @{
     ViewData["Title"] = "Home";
-    var featuredCollection = collectionService.GetCollection("featured", "Featured Collection");
-    var newCollection = collectionService.GetCollection("new", "New Arrivals");
+    var featuredCollection = collectionService.GetCollection("featured", "Featured Collection", 8, "All ⁄ Dresses ⁄ Tops ⁄ Trousers ⁄ Shirts ⁄ Skirts ⁄ Shoes");
+    var newCollection = collectionService.GetCollection("new", "New Arrivals", 8, "All ⁄ Dresses ⁄ Tops ⁄ Trousers ⁄ Shirts ⁄ Skirts ⁄ Shoes");
 }
 
 <partial name="/Views/Partials/_Showcase.cshtml" />

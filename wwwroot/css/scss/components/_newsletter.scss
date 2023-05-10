@@ -23,11 +23,16 @@
         }
 
         input {
+            font-size: 11px;
             border-radius: 25px;
             padding: 10px 90px 10px 20px;
             margin: 8px 0;
             border: 1px solid #ccc;
             box-sizing: border-box;
+
+            @include md {
+                font-size: 16px;
+            }
 
             @include lg {
                 padding: 10px 220px 10px 20px;
@@ -36,12 +41,17 @@
 
         button {
             padding: 10px 8px;
+            font-size: 11px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(-10%, -50%);
+
 
             @include md {
-                position: absolute;
-                top: 50%;
-                transform: translate(-40px, -50%);
+                font-size: 16px;
                 padding: 10px 35px;
+                transform: translate(-30%, -50%);
             }
         }
     }

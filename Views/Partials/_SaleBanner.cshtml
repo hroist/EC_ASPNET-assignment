@@ -1,8 +1,14 @@
-﻿<section class="sale-banner">
+﻿@{ 
+    int amount = 2;
+    var allProducts = await productService.GetByTagAsync("season-sale");
+    var products = allProducts.Take(amount);
+}
+
+<section class="sale-banner">
     <div class="container">
-        <partial name="/Views/Partials/_SaleCardImage.cshtml" />
+        <partial name="/Views/Partials/_SaleCardImage.cshtml" model="products.ElementAt(0)" />
         <partial name="/Views/Partials/_SaleCardText.cshtml" />
-        <partial name="/Views/Partials/_SaleCardImage.cshtml" />
+        <partial name="/Views/Partials/_SaleCardImage.cshtml" model="products.ElementAt(1)" />
 
     </div>
 </section>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using merketo.Contexts;
 
@@ -11,9 +12,11 @@ using merketo.Contexts;
 namespace merketo.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230509121012_Admin profile and email")]
+    partial class Adminprofileandemail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace merketo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e56ee702-fdc7-4427-8d48-a75cb1c5eeff",
+                            Id = "3d8cff07-15bd-421b-9726-fcfde09348b0",
                             Name = "SystemAdministrator",
                             NormalizedName = "SYSTEMADMINISTRATOR"
                         });
@@ -146,8 +149,8 @@ namespace merketo.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d4f1121b-3953-4417-8f67-a686204f440e",
-                            RoleId = "e56ee702-fdc7-4427-8d48-a75cb1c5eeff"
+                            UserId = "48dfdc9b-0d2e-4627-b584-9969d765e073",
+                            RoleId = "3d8cff07-15bd-421b-9726-fcfde09348b0"
                         });
                 });
 
@@ -200,7 +203,7 @@ namespace merketo.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d4f1121b-3953-4417-8f67-a686204f440e",
+                            UserId = "48dfdc9b-0d2e-4627-b584-9969d765e073",
                             City = "admin",
                             PostalCode = "admin",
                             StreetName = "admin"
@@ -282,21 +285,19 @@ namespace merketo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d4f1121b-3953-4417-8f67-a686204f440e",
+                            Id = "48dfdc9b-0d2e-4627-b584-9969d765e073",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f390bf1d-bdbb-4c86-adb5-6ee485f55d89",
-                            Email = "admin",
+                            ConcurrencyStamp = "515a1545-a928-406a-85be-28980bb89277",
+                            Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "system",
                             LastName = "admin",
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDpor1fmSWQlrxK8tl6SQVmq8jFlsOfoY65JMLwpI46769+GrsfjyyH1Fa3EPw/NOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFnVGrBCarfUqKG2RqHb1XXBl70JGBnAI2Ru/PqMntzeWVga1i/0lZQG9lHRvjZ4GA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ae1e0898-8646-40db-9c78-023f996319a4",
+                            SecurityStamp = "0f767240-5b7c-4a67-aa93-2482cf8eb97c",
                             TwoFactorEnabled = false,
-                            UserName = "admin"
+                            UserName = "admin@admin.com"
                         });
                 });
 

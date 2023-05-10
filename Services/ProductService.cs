@@ -3,7 +3,6 @@ using merketo.Models.Entities;
 using merketo.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using WebApp.Contexts;
 using WebApp.Models;
 using WebApp.Models.Entities;
 using WebApp.ViewModels;

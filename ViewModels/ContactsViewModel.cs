@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using merketo.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.ViewModels
 {
@@ -25,5 +26,17 @@ namespace WebApp.ViewModels
         public string Message { get; set; } = null!; 
 
         public bool SaveInfo { get; set; } = false;
+
+        public static implicit operator MessageEntity(ContactsViewModel contactsViewModel)
+        {
+            return new MessageEntity
+            {
+                Name = contactsViewModel.Name,
+                Email = contactsViewModel.Email,
+                PhoneNumber = contactsViewModel.PhoneNumber,
+                CompanyName = contactsViewModel.Company,
+                Message = contactsViewModel.Message
+            };
+        }
     }
 }

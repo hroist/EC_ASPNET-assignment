@@ -5,7 +5,6 @@ using merketo.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using WebApp.Contexts;
 using WebApp.Models.Entities;
 using WebApp.Models.Identity;
 using WebApp.ViewModels;

@@ -1,7 +1,11 @@
 ﻿@{
-    int amount = 6;
-    var allProducts = await productService.GetByTagAsync("popular");
-    var products = allProducts.Take(amount);
+    int amountGrid = 6;
+    var allProductsPopular = await productService.GetByTagAsync("popular");
+    var productsPopular = allProductsPopular.Take(amountGrid);
+
+    int amountCards = 3;
+    var allProductsSale = await productService.GetByTagAsync("season-sale");
+    var productsSale = allProductsSale.Take(amountCards);
 }
 
 <section class="top-selling">
@@ -10,7 +14,7 @@
             Top selling products this week
         </div>
         <div class="card-grid">
-            @foreach (var product in products)
+            @foreach (var product in productsPopular)
             {
                     <partial name="/Views/Partials/_ProductCard.cshtml" model="product" />
 
@@ -26,9 +30,10 @@
         </div>
         <div class="large-card-grid">
             <div class="container">
-                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
-                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
-                <partial name="/Views/Partials/_ProductCardLarge.cshtml" />
+                @foreach (var product in productsSale)
+                {
+                    <partial name="/Views/Partials/_ProductCardLarge.cshtml" model="product" />
+                }
             </div>
         </div>
     </div>

@@ -5,7 +5,6 @@ using merketo.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Services;
-using WebApp.Contexts;
 using WebApp.Models.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +15,7 @@ builder.Services.AddScoped<ShowcaseService>();
 
 builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("merketoDB")));
 builder.Services.AddDbContext<ProductContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("merketoDB")));
+builder.Services.AddDbContext<MessageContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("merketoDB")));
 
 
 builder.Services.AddScoped<ProfileRepository>();
@@ -27,6 +27,7 @@ builder.Services.AddScoped<ProfileService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<MessageService>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
 {

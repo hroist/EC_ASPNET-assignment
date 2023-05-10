@@ -1,8 +1,7 @@
 ﻿@model CollectionViewModel
 @{  
-    int amount = 8;
     var allProducts = await productService.GetByTagAsync(@Model.Tag);
-    var products = allProducts.Take(amount);
+    var products = allProducts.Take(@Model.Amount);
 }
 
 <section class="best-collection">
@@ -11,7 +10,7 @@
             @Model?.Title
         </div>
         <div class="categories">
-            All   ⁄   Dresses   ⁄   Tops   ⁄   Trousers   ⁄   Shirts   ⁄   Skirts   ⁄   Shoes   
+            @Model?.Categories   
         </div>
         <div class="collection-grid">
             @foreach(var product in products)
