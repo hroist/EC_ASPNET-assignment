@@ -1,6 +1,5 @@
-﻿namespace WebApp.ViewModels
+﻿namespace WebApp.ViewModels;
+
+public class HomeIndexViewModel
 {
-    public class HomeIndexViewModel
-    {
-    }
 }

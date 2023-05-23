@@ -1,21 +1,20 @@
 ﻿using merketo.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
-namespace merketo.Services
+namespace merketo.Services;
+
+public class CollectionService
 {
-    public class CollectionService
+
+    public CollectionViewModel GetCollection(string tag, string? title, int amount, string? categories)
     {
-
-        public CollectionViewModel GetCollection(string tag, string? title, int amount, string? categories)
+        return new CollectionViewModel()
         {
-            return new CollectionViewModel()
-            {
-                Title = title,
-                Categories = categories,
-                Tag = tag,
-                Amount = amount
+            Title = title,
+            Categories = categories,
+            Tag = tag,
+            Amount = amount
 
-            };
-        }
+        };
     }
 }

@@ -2,31 +2,30 @@
 using WebApp.Services;
 using WebApp.ViewModels;
 
-namespace WebApp.Controllers
+namespace WebApp.Controllers;
+
+public class ProductsController : Controller
 {
-    public class ProductsController : Controller
+    private readonly ProductService _productService;
+
+    public ProductsController(ProductService productService)
     {
-        private readonly ProductService _productService;
+        _productService = productService;
+    }
 
-        public ProductsController(ProductService productService)
-        {
-            _productService = productService;
-        }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+    public IActionResult Search()
+    {
+        return View();
+    }
 
-        public IActionResult Search()
-        {
-            return View();
-        }
-
-        public IActionResult Details(Guid articleNumber)
-        {
-            ViewBag.ArticleNumber = articleNumber;
-            return View();
-        }
+    public IActionResult Details(Guid articleNumber)
+    {
+        ViewBag.ArticleNumber = articleNumber;
+        return View();
     }
 }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace merketo.Controllers
+namespace merketo.Controllers;
+
+public class DeniedController : Controller
 {
-    public class DeniedController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

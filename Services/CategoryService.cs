@@ -6,60 +6,64 @@ using System.Linq.Expressions;
 using WebApp.Models.Entities;
 using WebApp.ViewModels;
 
-namespace merketo.Services
+namespace merketo.Services;
+
+public class CategoryService 
 {
-    public class CategoryService 
+    private readonly ProductContext _productContext;
+
+    public CategoryService(ProductContext productContext)
     {
-        private readonly ProductContext _productContext;
+        _productContext = productContext;
+    }
 
-        public CategoryService(ProductContext productContext)
+    public async Task<CategoryEntity> CreateAsync(ProductAddViewModel productViewModel)
+    {
+        CategoryEntity categoryEntity = productViewModel;
+        if(categoryEntity != null) 
         {
-            _productContext = productContext;
-        }
+            if(await CategoryExistsAsync(c => c.CategoryName == productViewModel.Category))
+                categoryEntity = await GetAsync(c => c.CategoryName == productViewModel.Category);
 
-        public async Task<CategoryEntity> CreateAsync(ProductAddViewModel productViewModel)
-        {
-            CategoryEntity categoryEntity = productViewModel;
-            if(categoryEntity != null) 
+            else
             {
-                if(await CategoryExistsAsync(c => c.CategoryName == productViewModel.Category))
-                    categoryEntity = await GetAsync(c => c.CategoryName == productViewModel.Category);
-
-                else
+                categoryEntity = new CategoryEntity()
                 {
-                    categoryEntity = new CategoryEntity()
-                    {
-                        CategoryName = productViewModel.Category
-                    };
-                    _productContext.Categories.Add(categoryEntity);
-                    await _productContext.SaveChangesAsync();
-                }
-
-                return categoryEntity;
-
+                    CategoryName = productViewModel.Category
+                };
+                _productContext.Categories.Add(categoryEntity);
+                await _productContext.SaveChangesAsync();
             }
+
+            return categoryEntity;
+
+        }
+        return null!;
+    
+    }
+
+    public async Task<bool> CategoryExistsAsync(Expression<Func<CategoryEntity, bool>> predicate)
+    {
+        if (await _productContext.Categories.AnyAsync(predicate))
+            return true;
+
+        return false;
+    }
+
+    public async Task<CategoryEntity> GetAsync(Expression<Func<CategoryEntity, bool>> predicate)
+    {
+        try
+        {
+            var category = await _productContext.Categories.FirstOrDefaultAsync(predicate);
+            if (category != null)
+            {
+                return category;
+            }
+            else return null!;
+        }
+        catch
+        {
             return null!;
-        
-        }
-
-        public async Task<bool> CategoryExistsAsync(Expression<Func<CategoryEntity, bool>> predicate)
-        {
-            if (await _productContext.Categories.AnyAsync(predicate))
-                return true;
-
-            return false;
-        }
-
-        public async Task<CategoryEntity> GetAsync(Expression<Func<CategoryEntity, bool>> predicate)
-        {
-            try
-            {
-                return await _productContext.Categories.FirstOrDefaultAsync(predicate);
-            }
-            catch
-            {
-                return null!;
-            }          
-        }
+        }          
     }
 }

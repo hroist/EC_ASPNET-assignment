@@ -6,39 +6,38 @@ using WebApp.Models.Entities;
 using WebApp.Models.Identity;
 using WebApp.ViewModels;
 
-namespace merketo.Services
+namespace merketo.Services;
+
+public class ProfileService
 {
-    public class ProfileService
+    private readonly ProfileRepository _profileRepo;
+
+    public ProfileService(ProfileRepository profileRepo)
     {
-        private readonly ProfileRepository _profileRepo;
+        _profileRepo = profileRepo;
+    }
 
-        public ProfileService(ProfileRepository profileRepo)
+    public async Task<ProfileEntity> CreateAsync(RegisterViewModel registerViewModel, AppUser appUser)
+    {
+        ProfileEntity profileEntity = registerViewModel;
+        if (profileEntity != null)
         {
-            _profileRepo = profileRepo;
+            profileEntity.UserId = appUser.Id;
+            return await _profileRepo.AddAsync(profileEntity);
         }
+        return null!;
+    }
 
-        public async Task<ProfileEntity> CreateAsync(RegisterViewModel registerViewModel, AppUser appUser)
-        {
-            ProfileEntity profileEntity = registerViewModel;
-            if (profileEntity != null)
-            {
-                profileEntity.UserId = appUser.Id;
-                return await _profileRepo.AddAsync(profileEntity);
-            }
-            return null!;
-        }
+    public async Task<ProfileEntity> GetAsync(string userId)
+    {
+        return await _profileRepo.GetAsync(x => x.UserId == userId);
+    }
 
-        public async Task<ProfileEntity> GetAsync(string userId)
+    public async Task<bool> UpdateAsync(ProfileEntity profileEntity)
+    {
+        if(await _profileRepo.UpdateAsync(profileEntity) != null)
         {
-            return await _profileRepo.GetAsync(x => x.UserId == userId);
-        }
-
-        public async Task<bool> UpdateAsync(ProfileEntity profileEntity)
-        {
-            if(await _profileRepo.UpdateAsync(profileEntity) != null)
-            {
-                return true;
-            } else { return false; }
-        }
+            return true;
+        } else { return false; }
     }
 }

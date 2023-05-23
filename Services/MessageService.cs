@@ -4,43 +4,42 @@ using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
 using WebApp.ViewModels;
 
-namespace merketo.Services
+namespace merketo.Services;
+
+public class MessageService
 {
-    public class MessageService
+
+    private readonly MessageContext _messageContext;
+
+    public MessageService(MessageContext messageContext)
     {
+        _messageContext = messageContext;
+    }
 
-        private readonly MessageContext _messageContext;
-
-        public MessageService(MessageContext messageContext)
+    public async Task<bool> SaveMessageAsync(ContactsViewModel contactsViewModel)
+    {
+        try
         {
-            _messageContext = messageContext;
+            MessageEntity messageEntity = contactsViewModel;
+            _messageContext.Messages.Add(messageEntity);
+            await _messageContext.SaveChangesAsync();
+            return true;
         }
-
-        public async Task<bool> SaveMessageAsync(ContactsViewModel contactsViewModel)
+        catch
         {
-            try
-            {
-                MessageEntity messageEntity = contactsViewModel;
-                _messageContext.Messages.Add(messageEntity);
-                await _messageContext.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return false;
         }
+    }
 
-        public async Task<IEnumerable<MessageEntity>> GetAllAsync()
+    public async Task<IEnumerable<MessageEntity>> GetAllAsync()
+    {
+        try
         {
-            try
-            {
-                var messages = await _messageContext.Messages.ToListAsync();
+            var messages = await _messageContext.Messages.ToListAsync();
 
-                return messages;
-            }
-            catch { return Enumerable.Empty<MessageEntity>(); }
-
+            return messages;
         }
+        catch { return Enumerable.Empty<MessageEntity>(); }
+
     }
 }

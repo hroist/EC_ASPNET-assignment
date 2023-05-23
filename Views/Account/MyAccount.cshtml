@@ -22,8 +22,6 @@
 
 }
 <div class="below-header">
-    
-
     @{
         if (await userManager.IsInRoleAsync(await userService.GetAsync(User.Identity?.Name), "SystemAdministrator"))
         {

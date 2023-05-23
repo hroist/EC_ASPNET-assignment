@@ -2,42 +2,41 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.ViewModels;
 
-namespace WebApp.Controllers
+namespace WebApp.Controllers;
+
+public class ContactsController : Controller
 {
-    public class ContactsController : Controller
+
+    private readonly MessageService _messageService;
+
+    public ContactsController(MessageService messageService)
     {
+        _messageService = messageService;
+    }
 
-        private readonly MessageService _messageService;
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public ContactsController(MessageService messageService)
+    [HttpPost]
+    public async Task<IActionResult> Index(ContactsViewModel contactsViewModel)
+    {
+        if(ModelState.IsValid)
         {
-            _messageService = messageService;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Index(ContactsViewModel contactsViewModel)
-        {
-            if(ModelState.IsValid)
+            var messageEntity = await _messageService.SaveMessageAsync(contactsViewModel);
+            if(messageEntity)
             {
-                var messageEntity = await _messageService.SaveMessageAsync(contactsViewModel);
-                if(messageEntity)
-                {
-                    return RedirectToAction("Message", "Contacts");
-                }
-
-                ModelState.AddModelError("", "Something went wrong when trying to send your message.");
+                return RedirectToAction("Message", "Contacts");
             }
-            return View(contactsViewModel);
-        }
 
-        public IActionResult Message()
-        {
-            return View();
+            ModelState.AddModelError("", "Something went wrong when trying to send your message.");
         }
+        return View(contactsViewModel);
+    }
+
+    public IActionResult Message()
+    {
+        return View();
     }
 }
